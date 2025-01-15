@@ -1,8 +1,8 @@
-# Your startup name here
+# Baby Namer
 
 [My Notes](notes.md)
 
-A brief description of the application here. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This application serves as a way for couples and families to easily choose a baby name to give to their child soon to be. 
 
 
 > [!NOTE]
@@ -18,45 +18,61 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
-- [ ] Description of key features
-- [ ] Description of how you will use each technology
-- [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
+- [X] Proper use of Markdown: *I learned how Markdown works and used it appropriately.*
+- [X] A concise and compelling elevator pitch: *I tried my best to come up with a compelling pitch for my intended audience.*
+- [X] Description of key features: *Completed!*
+- [X] Description of how you will use each technology: *I'm not super familiar with all the technologies, but I did my best with this.*
+- [X] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references: *Completed!*
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+What's in a name? **Everything!** With such an important decision riding on soon-to-be parents, stress can be high. Especially when everyone and their dog has an opinion about which name is best. The Baby Namer simplifies that decision for couples and families in a fun and easy way. The Baby Namer allows couples to log in and flip through baby names on their phone, select the ones they like, and then see the ones both chose. Additionally, couples have the option of adding family members to also contribute in the naming process and choose the names they like. Finally, couples can hear the feedback from loved ones without offending someone because "no one chose great aunt Sally's favorite name." End the needless frustration of choosing a name and have some fun!
 
 ### Design
 
-![Design image](placeholder.png)
+Here is the Design of the main page of my application.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+![Main page of the baby namer application](/main_page.jpg)
+
+This will be what it looks like as you choose names.
+
+![The page where you choose which names you like.](/Name_picking_page.jpg)
+
+Here is a sequence diagram to illustrate how the backend will work when you accept or like a name.
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    participant A as User 1
+    participant B as User 2
+    participant C as Server
+    
+    A->>C: +1 Like
+    C-->>B: +1 Like
+    B->>C: +1 Like
+    C-->>A: +1 Like
 ```
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Choose baby names you like and don't like
+- Secure login
+- Realtime connectivity to family profiles
+- Ability to view top matches
+- Ability to see favorite names
 
 ### Technologies
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - I will have 2 html pages. One to view all connections, and the other to scroll through names.
+- **CSS** - All the application styling to make this app look appealing.
+- **React** - Provide login, name display, accepting or rejecting, and adding name to favourites.
+- **Service** - Backend Service with endpoints for:
+  - login
+  - retrieving names
+  - submitting preferences
+- **DB/Login** - Register and login users. Will store name preferences.
+- **WebSocket** - Will Update matches and display that for couples.
 
 ## 🚀 AWS deliverable
 
