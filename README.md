@@ -32,11 +32,11 @@ What's in a name? **Everything!** With such an important decision riding on soon
 
 Here is the Design of the main page of my application.
 
-![Main page of the baby namer application](/main_page.jpg)
+![Main page of the baby namer application](C:\Users\nsims\Documents\cs260\startup\main_page.jpg)
 
 This will be what it looks like as you choose names.
 
-![The page where you choose which names you like.](/Name_picking_page.jpg)
+![The page where you choose which names you like.](C:\Users\nsims\Documents\cs260\startup\Name_picking_page.jpg)
 
 Here is a sequence diagram to illustrate how the backend will work when you accept or like a name.
 
