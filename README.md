@@ -84,15 +84,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [X] **HTML pages** - Created 4 HTML's for my web application
+- [X] **Proper HTML element usage** - I introduced several elements and used them correctly
+- [X] **Links** - I have included links to my github and to other HTML pages.
+- [X] **Text** - I added text to my HTML's.
+- [X] **3rd party API placeholder** - My API is going to be a baby name generator. I've left a placeholder for that in the play.html file.
+- [X] **Images** - I added images to my about.html
+- [X] **Login placeholder** - Added a login placeholder on the index.html page 
+- [X] **DB data placeholder** - My DB data placeholder is included in matches.html page. It will have a list of matches and favorites that it grabs.
+- [X] **WebSocket placeholder** - Added a place for my data and connections to be displayed and changed.
 
 ## 🚀 CSS deliverable
 
