@@ -24,3 +24,6 @@ I also learned how to assign a domain name to your ip address. This was done thr
 
 There were several helpful things that I learned from this deliverable. First, that svg is really powerful and helpful. I had no idea that you could do so much with images and creating them. The rest was a lot of review, but still super helpful. I learned how to add inputs: `<input type=[type] id=[id] />`
 
+## CSS Notes
+
+
