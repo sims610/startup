@@ -12,11 +12,11 @@
           crossorigin="anonymous"
     />
 </head>
-    <body>
+    <body class="bg-white text-light">
         <header class="container-fluid">
 
             <!-- Navigation -->
-            <nav class="navbar fixed-top navbar-dark">
+            <nav class="navbar fixed-top navbar-light">
                 <h1 class="navbar-brand">Baby Namer</h1>
                 <menu class="navbar-nav">
                     <li class="nav-item">
@@ -34,16 +34,16 @@
                 </menu>
             </nav>
         </header>
-        <main>
+        <main class="container-fluid bg-info text-left">
             <form>
-                <fieldset>
-                    <legend>Connections</legend>
-                    <label for="connection1">Spouse</label>
-                    <input type="radio" id="connection1" name="varRadio" value="connection1" checked />
-                    <label  for="connection2">Mom</label>
-                    <input type="radio" id="connection2" name="varRadio" value="connection2" />
-                    <label  for="connection3">Dad</label>
-                    <input type="radio" id="connection3" name="varRadio" value="connection3" />
+                <fieldset class="form-group border">
+                    <legend class="w-auto">Connections</legend>
+                    <label class="form-check-label" for="connection1">Spouse</label>
+                    <input class="form-check-input" type="radio" id="connection1" name="varRadio" value="connection1" checked />
+                    <label class="form-check-label" for="connection2">Mom</label>
+                    <input class="form-check-input" type="radio" id="connection2" name="varRadio" value="connection2" />
+                    <label class="form-check-label" for="connection3">Dad</label>
+                    <input class="form-check-input" type="radio" id="connection3" name="varRadio" value="connection3" />
                 </fieldset>
             </form>
             <h1>Matches with Spouse</h1>
