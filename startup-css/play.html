@@ -11,6 +11,7 @@
               integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
               crossorigin="anonymous"
         />
+        <link href="play.css" rel="stylesheet" />
     </head>
     <body class="bg-white text-light">
         <header class="container-fluid">
@@ -35,24 +36,25 @@
             </nav>
         </header>
 
-        <main>
+        <main class="container-fluid bg-light text-center text-dark">
             <div class="users">
-                <span class="user-name">Unknown User</span>
+                <span class="user-name text-left">Unknown User</span>
             </div>
             <br />
             <form>
                 <div>
                     <span>Connect with user: </span>
                     <input type="text" placeholder="users@email.com" />
+                    <button type="submit" class="btn btn-primary">Connect</button>
                 </div>
-                    <fieldset>
-                        <legend>Gender</legend>
-                        <label for="radio1">Boy</label>
-                        <input type="radio" id="radio1" name="varRadio" value="radio1" checked />
-                        <label for="radio2">Girl</label>
-                        <input type="radio" id="radio2" name="varRadio" value="radio2" />
-                        <label for="radio3">Surprise</label>
-                        <input type="radio" id="radio3" name="varRadio" value="radio3" />
+                    <fieldset class="form-group border">
+                        <legend class="w-auto">Gender</legend>
+                        <label class="form-check-label" for="radio1">Boy</label>
+                        <input class="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1" checked />
+                        <label class="form-check-label" for="radio2">Girl</label>
+                        <input class="form-check-input" type="radio" id="radio2" name="varRadio" value="radio2" />
+                        <label class="form-check-label" for="radio3">Surprise</label>
+                        <input class="form-check-input" type="radio" id="radio3" name="varRadio" value="radio3" />
                     </fieldset>
             </form>
             <p></p>
@@ -66,10 +68,11 @@
 
             <br />
 
-            <p></p>
-            <p>Double-tap to add to favourites</p>
-            <p>Swipe Right to Like</p>
-            <p>Swipe Left to Reject</p>
+            <aside>
+                <p>Double-tap to add to favourites</p>
+                <p class="float-right">Swipe Right to Like</p>
+                <p class="float-left">Swipe Left to Reject</p>
+            </aside>
         </main>
 
         <footer class="bg-dark text-white-50">

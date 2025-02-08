@@ -1,0 +1,43 @@
+span .user-name {
+    float: left;
+    padding-top: 0.3em;
+}
+
+svg {
+    padding: 0 0.3em;
+}
+
+aside {
+  display: block;
+  position: relative;
+  margin: 40px 0;
+}
+
+aside p {
+  font: bold 12px Sans-Serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: #369;
+  color: #fff;
+  padding: 5px 10px;
+  margin: 0 0 10px 0;
+  line-height: 24px;
+}
+.csstransforms aside {
+  border-left: 34px solid #369;
+  padding-left: 10px;
+}
+
+.csstransforms aside p {
+  /* Abs positioning makes it not take up vert space */
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  /* Border is the new background */
+  background: none;
+
+  /* Rotate from top left corner (not default) */
+  transform-origin: 0 0;
+  transform: rotate(90deg);
+}
