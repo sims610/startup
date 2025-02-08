@@ -6,6 +6,7 @@ body {
 
 header {
   flex: 0 80px;
+  color: black;
 }
 
 main {
@@ -28,6 +29,7 @@ menu {
   list-style: none;
 }
 
+
 .navbar-brand {
   padding-left: 0.3em;
   border-bottom: solid rgb(182, 182, 182) thin;
@@ -35,7 +37,9 @@ menu {
 
 menu .nav-item {
   padding: 0 0.3em;
+  color: green;
 }
+
 
 footer a {
   float: right;
