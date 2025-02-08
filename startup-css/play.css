@@ -3,41 +3,67 @@ span .user-name {
     padding-top: 0.3em;
 }
 
-svg {
-    padding: 0 0.3em;
+.container {
+  height: 50vh; /* 50% of the viewport height */
+  width: 500px;
 }
 
-aside {
-  display: block;
+.container h1 {
+    line-height: 40vh;
+    font-size: 100px;
+    color: pink;
+}
+
+#like {
+    background-color: green;
+    float: right !important;
+}
+
+#reject {
+    background-color: red;
+    float: left;
+}
+.clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+#heart {
+  color: #ffbbbb;
+  background-color: currentColor;
+  display: inline-block;
+  height: 25px;
+  margin: 0 10px;
   position: relative;
-  margin: 40px 0;
-}
-
-aside p {
-  font: bold 12px Sans-Serif;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  background: #369;
-  color: #fff;
-  padding: 5px 10px;
-  margin: 0 0 10px 0;
-  line-height: 24px;
-}
-.csstransforms aside {
-  border-left: 34px solid #369;
-  padding-left: 10px;
-}
-
-.csstransforms aside p {
-  /* Abs positioning makes it not take up vert space */
-  position: absolute;
   top: 0;
-  left: 0;
-
-  /* Border is the new background */
-  background: none;
-
-  /* Rotate from top left corner (not default) */
-  transform-origin: 0 0;
-  transform: rotate(90deg);
+  transform: rotate(-45deg);
+  position: absolute;
+  left: 80%; top: 30%;
+  width: 25px;
 }
+
+#heart::before,
+#heart::after {
+  content: "";
+  background-color: currentColor;
+  border-radius: 50%;
+  height: 25px;
+  position: absolute;
+  width: 25px;
+}
+
+#heart:before {
+  top: -12.5px;
+  left: 0;
+}
+
+#heart:after {
+  left: 12.5px;
+  top: 0;
+}
+
+#heart:focus {
+  color: red;
+}
+

@@ -21,10 +21,10 @@
                 <h1 class="navbar-brand">Baby Namer</h1>
                 <menu class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
+                        <a class="nav-link" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="play.html">Play</a>
+                        <a class="nav-link active" href="play.html">Play</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="matches.html">Matches</a>
@@ -36,7 +36,7 @@
             </nav>
         </header>
 
-        <main class="container-fluid bg-light text-center text-dark">
+        <main class="container-fluid bg-info text-center text-dark">
             <div class="users">
                 <span class="user-name text-left">Unknown User</span>
             </div>
@@ -59,14 +59,27 @@
             </form>
             <p></p>
 
-            <svg xmlns="http://www.w3.org/2000/svg">
-                <g>
-                    <rect x="0" y="0" width="300" height="200" fill="white" stroke="black" stroke-width="3"></rect>
-                    <text x="100" y="100" font-family="Verdana" font-size="35" fill="black">Sally</text>
-                </g>
-            </svg>
-
-            <br />
+<!--            <svg xmlns="http://www.w3.org/2000/svg">-->
+<!--                <g>-->
+<!--                    <rect x="0" y="0" width="300" height="200" fill="white" stroke="black" stroke-width="3"></rect>-->
+<!--                    <text x="100" y="100" font-family="Verdana" font-size="35" fill="black">Sally</text>-->
+<!--                    <animate-->
+<!--                            attributeName="x y"-->
+<!--                            begin="0s"-->
+<!--                            dur="8s"-->
+<!--                            from="50"-->
+<!--                            to="90%"-->
+<!--                            repeatCount="indefinite" />-->
+<!--                </g>-->
+<!--            </svg>-->
+            <div>
+                <div class="container pt-3 border border-dark bg-light float-center">
+                    <a id="heart" href="#"></a>
+                    <h1>Sally</h1>
+                </div>
+                <button id="like" type="button" class="btn btn-primary float-right">>></button>
+                <button id="reject" type="button" class="btn btn-primary float-left"><<</button>
+            </div>
 
             <aside>
                 <p>Double-tap to add to favourites</p>
