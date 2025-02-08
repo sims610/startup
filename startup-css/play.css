@@ -8,8 +8,16 @@ span .user-name {
   width: 500px;
 }
 
+fieldset {
+    padding: 0.3em;
+}
+
+#submit-btn {
+    padding: 0.3em;
+}
+
 .container h1 {
-    line-height: 40vh;
+    line-height: 30vh;
     font-size: 100px;
     color: pink;
 }
@@ -38,8 +46,8 @@ span .user-name {
   position: relative;
   top: 0;
   transform: rotate(-45deg);
-  position: absolute;
-  left: 80%; top: 30%;
+  position: relative;
+  left: 45%; top: 3%;
   width: 25px;
 }
 
