@@ -31,8 +31,8 @@ export function Play() {
                 <a id="heart" href="#"></a>
                 <h1>Sally</h1>
             </div>
-            <button id="like" type="button" className="btn btn-primary float-right">>></button>
-            <button id="reject" type="button" className="btn btn-primary float-left">left</button>
+            <button id="like" type="button" className="btn btn-primary float-right">accept</button>
+            <button id="reject" type="button" className="btn btn-primary float-left">reject</button>
         </div>
         <br/>
     </main>
