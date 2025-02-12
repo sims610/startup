@@ -18,7 +18,7 @@ export function Play() {
                 <fieldset className="form-group border">
                     <legend className="w-auto">Gender</legend>
                     <label className="form-check-label" for="radio1">Boy</label>
-                    <input className="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1" checked />
+                    <input className="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1" />
                     <label className="form-check-label" for="radio2">Girl</label>
                     <input className="form-check-input" type="radio" id="radio2" name="varRadio" value="radio2" />
                     <label className="form-check-label" for="radio3">Surprise</label>
