@@ -1,0 +1,77 @@
+span .user-name {
+    float: left;
+    padding-top: 0.3em;
+}
+
+.container {
+  height: 50vh; /* 50% of the viewport height */
+  width: 500px;
+}
+
+fieldset {
+    padding: 0.3em;
+}
+
+#submit-btn {
+    padding: 0.3em;
+}
+
+.container h1 {
+    line-height: 30vh;
+    font-size: 100px;
+    color: pink;
+}
+
+#like {
+    background-color: green;
+    float: right !important;
+}
+
+#reject {
+    background-color: red;
+    float: left;
+}
+.clearfix::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
+
+#heart {
+  color: #ffbbbb;
+  background-color: currentColor;
+  display: inline-block;
+  height: 25px;
+  margin: 0 10px;
+  position: relative;
+  top: 0;
+  transform: rotate(-45deg);
+  position: relative;
+  left: 45%; top: 3%;
+  width: 25px;
+}
+
+#heart::before,
+#heart::after {
+  content: "";
+  background-color: currentColor;
+  border-radius: 50%;
+  height: 25px;
+  position: absolute;
+  width: 25px;
+}
+
+#heart:before {
+  top: -12.5px;
+  left: 0;
+}
+
+#heart:after {
+  left: 12.5px;
+  top: 0;
+}
+
+#heart:focus {
+  color: red;
+}
+
