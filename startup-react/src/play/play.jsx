@@ -1,38 +1,88 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './play.css';
 
-export function Play({userName}) {
+import { Unconnected } from './unconnected';
+import { Connected } from './connected';
+import { ConState } from './conState';
+
+export function Play({userName, conState, onConChange, partner}) {
+    let girls = ["Sally", "Chloe", "Maddison", "Kate", "Skylar", "Terry", "Addison", "Addie", "Susan", "Sandra"];
+    let boys = ["Cole", "Aaron", "Nathan", "Michael"]
+    let gcolor = '#ffbbbb'
+    let bcolor = '#8199ff'
+
+    const [names, setGender] = React.useState(girls)
+    const [count, setCount] = React.useState(0);
+    const [colorme, setColor] = React.useState(gcolor)
+
+    function rejectClick() {
+        console.log('reject')
+        setCount(count+1)
+    }
+
+    function acceptClick() {
+        console.log('accept')
+        localStorage.setItem('Liked', localStorage.getItem('Liked') + ' ' + names[count])
+        setCount(count + 1)
+    }
+
+    function favoriteClick() {
+        console.log('favorite')
+        localStorage.setItem('Favorites',localStorage.getItem('Favorites') + ' ' + names[count])
+        localStorage.setItem('Liked', localStorage.getItem('Liked') + ' ' + names[count])
+        setCount(count+1)
+    }
+
+    function boyClick() {
+        console.log('boy')
+        setGender(boys)
+        setColor(bcolor)
+    }
+
+    function girlClick() {
+        console.log('girl')
+        setGender(girls)
+        setColor(gcolor)
+    }
+
+
     return (
     <main className="container-fluid bg-info text-center text-dark">
         <div className="users">
-            <h3 className="user-name text-left">{userName}</h3>
+            <h3 className="user-name text-left">Playing as {userName}</h3>
         </div>
         <br />
         <form>
             <div>
-                <span>Connect with user: </span>
-                <input type="text" placeholder="users@email.com" />
-                <button id="submit-btn" type="submit" className="btn btn-primary">Connect</button>
+                {conState === ConState.Connected && (
+                    <Connected partner={partner} onUnconnect={() => onConChange(partner, ConState.Unconnected)}/>
+                )}
+                {conState === ConState.Unconnected && (
+                    <Unconnected
+                        partner={partner}
+                        onConnect={(connectPartner) => {
+                            onConChange(connectPartner, ConState.Connected);
+                        }}
+                    />
+                )}
             </div>
             <br/>
                 <fieldset className="form-group border">
                     <legend className="w-auto">Gender</legend>
                     <label className="form-check-label" for="radio1">Boy</label>
-                    <input className="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1" />
+                    <input className="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1" onClick={boyClick}/>
                     <label className="form-check-label" for="radio2">Girl</label>
-                    <input className="form-check-input" type="radio" id="radio2" name="varRadio" value="radio2" />
-                    <label className="form-check-label" for="radio3">Surprise</label>
-                    <input className="form-check-input" type="radio" id="radio3" name="varRadio" value="radio3" />
+                    <input className="form-check-input" type="radio" id="radio2" name="varRadio" value="radio2" onClick={girlClick} />
                 </fieldset>
         </form>
         <p></p>
         <div>
             <div className="container pt-3 border border-dark bg-light float-center">
-                <a id="heart" href="#"></a>
-                <h1>Sally</h1>
+                <a id="heart" href="#" onClick={favoriteClick}></a>
+                <h1 style={{color: colorme}}>{names[count]}</h1>
             </div>
-            <button id="like" type="button" className="btn btn-primary float-right">accept</button>
-            <button id="reject" type="button" className="btn btn-primary float-left">reject</button>
+            <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>accept</button>
+            <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>reject</button>
         </div>
         <br/>
     </main>

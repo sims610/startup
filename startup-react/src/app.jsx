@@ -8,11 +8,15 @@ import { Play } from './play/play';
 import { Matches } from './matches/matches';
 import { About } from './about/about';
 import { AuthState } from './login/authState';
+import { ConState } from "./play/conState";
 
 function App() {
   const [userName, setUserName] = React.useState(localStorage.getItem('userName') || '');
   const currentAuthState = userName ? AuthState.Authenticated : AuthState.Unauthenticated;
   const [authState, setAuthState] = React.useState(currentAuthState);
+  const [partner, setPartner] = React.useState(localStorage.getItem('partner') || '');
+  const currentConState = partner ? ConState.Connected : ConState.Unconnected;
+  const [conState, setConState] = React.useState(currentConState);
 
   return (
     <BrowserRouter>
@@ -66,7 +70,21 @@ function App() {
                     }
                     exact
               />
-              <Route path='/play' element={<Play userName={userName} />} />
+              <Route
+                  path='/play'
+                  element={
+                      <Play
+                          userName={userName}
+                          conState={conState}
+                          onConChange={(partner, conState) => {
+                              setConState(conState);
+                              setPartner(partner);
+                          }}
+                          partner={partner}
+                      />
+                  }
+                  exact
+              />
               <Route path='/matches' element={<Matches />} />
               <Route path='/about' element={<About />} />
               <Route path='*' element={<NotFound />} />

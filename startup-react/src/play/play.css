@@ -3,6 +3,16 @@ span .user-name {
     padding-top: 0.3em;
 }
 
+.form-check-label {
+    padding-right: 0.3em;
+    padding-left: 1.0em;
+}
+
+span.partner{
+    padding: 1em;
+}
+
+
 .container {
   height: 50vh; /* 50% of the viewport height */
   width: 500px;
@@ -19,7 +29,6 @@ fieldset {
 .container h1 {
     line-height: 30vh;
     font-size: 100px;
-    color: pink;
 }
 
 #like {
@@ -72,6 +81,20 @@ fieldset {
 }
 
 #heart:focus {
-  color: red;
+  animation: changeColor 1s;
+}
+
+@keyframes changeColor {
+    0% {
+        color: #ffbbbb;
+    }
+
+    20% {
+        color: red;
+    }
+
+    100% {
+        color: red;
+    }
 }
 
