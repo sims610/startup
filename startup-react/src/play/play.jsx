@@ -21,15 +21,33 @@ export function Play({userName, conState, onConChange, partner}) {
     }
 
     function acceptClick() {
-        console.log('accept')
-        localStorage.setItem('Liked', localStorage.getItem('Liked') + ' ' + names[count])
+        let name = localStorage.getItem('userName')
+        let liked = []
+        const likedText = localStorage.getItem(name)
+        if (likedText) {
+            liked = JSON.parse(likedText)
+        }
+        liked.push(names[count])
+        localStorage.setItem(name, JSON.stringify(liked))
         setCount(count + 1)
     }
 
     function favoriteClick() {
-        console.log('favorite')
-        localStorage.setItem('Favorites',localStorage.getItem('Favorites') + ' ' + names[count])
-        localStorage.setItem('Liked', localStorage.getItem('Liked') + ' ' + names[count])
+        let name = localStorage.getItem('userName')
+        let liked = []
+        let favorite = []
+        const likedText = localStorage.getItem(name)
+        const favoriteText = localStorage.getItem('Favorites')
+        if (likedText) {
+            liked = JSON.parse(likedText)
+        }
+        liked.push(names[count])
+        if (favoriteText) {
+            favorite = JSON.parse(favoriteText)
+        }
+        favorite.push(names[count])
+        localStorage.setItem('Favorites',JSON.stringify(favorite))
+        localStorage.setItem(name, JSON.stringify(liked))
         setCount(count+1)
     }
 
