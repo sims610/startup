@@ -6,8 +6,8 @@ import { Connected } from './connected';
 import { ConState } from './conState';
 
 export function Play({userName, conState, onConChange, partner}) {
-    let girls = ["Sally", "Chloe", "Maddison", "Kate", "Skylar", "Terry", "Addison", "Addie", "Susan", "Sandra"];
-    let boys = ["Cole", "Aaron", "Nathan", "Michael"]
+    let girls = ["Sally", "Chloe", "Madison", "Kate", "Skylar", "Terry", "Addison", "Addie", "Susan", "Sandra"];
+    let boys = ["Cole", "Aaron", "Nathan", "Michael", "Corbin", "Ben", "Tim", "Luke", "Reggie"]
     let gcolor = '#ffbbbb'
     let bcolor = '#8199ff'
 
@@ -97,7 +97,7 @@ export function Play({userName, conState, onConChange, partner}) {
         <div>
             <div className="container pt-3 border border-dark bg-light float-center">
                 <a id="heart" href="#" onClick={favoriteClick}></a>
-                <h1 style={{color: colorme}}>{names[count]}</h1>
+                <h1 style={{color: colorme, alignItems: "center"}}>{names[count]}</h1>
             </div>
             <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>accept</button>
             <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>reject</button>

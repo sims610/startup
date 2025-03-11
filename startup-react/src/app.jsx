@@ -66,6 +66,11 @@ function App() {
                                 setAuthState(authState);
                                 setUserName(userName);
                             }}
+                            conState={conState}
+                            onConChange={(partner, conState) => {
+                                setConState(conState);
+                                setPartner(partner);
+                            }}
                         />
                     }
                     exact

@@ -4,7 +4,73 @@ import './matches.css';
 export function Matches() {
 
   const partner = localStorage.getItem('partner') || 'Spouse';
-  let partnersChoice = ["Cole", "Sally", "Chloe"]
+  const [liked, setLiked] = React.useState([]);
+  const [partnersLiked, setPartnersLiked] = React.useState([]);
+  const [favorites, setFavorites] = React.useState([]);
+  let name = localStorage.getItem('userName')
+
+  React.useEffect(() => {
+      const likedText = localStorage.getItem(name);
+      if (likedText) {
+          setLiked(JSON.parse(likedText));
+      }
+  }, []);
+
+  React.useEffect(() => {
+      const partnersLikedText = localStorage.getItem(partner);
+      if (partnersLikedText) {
+          setPartnersLiked(JSON.parse(partnersLikedText));
+      }
+  }, []);
+
+  console.log({partnersLiked})
+  console.log({liked})
+
+  const matches = []
+  for (let i = 0; i < liked.length; i++) {
+      if (partnersLiked.includes(liked[i])) {
+          matches.push(liked[i])
+      }
+  }
+
+  console.log({matches})
+
+
+  const listItems = [];
+  if (matches.length) {
+      for (const [i, match] of matches.entries()) {
+          listItems.push(
+              <li>{match}</li>
+          );
+      }
+  } else {
+      listItems.push(
+          <li aria-colspan='2'>no matches</li>
+      );
+  }
+
+  // set favorites dynamically
+  React.useEffect(() => {
+      const favoriteText = localStorage.getItem('Favorites');
+      if (favoriteText) {
+          setFavorites(JSON.parse(favoriteText));
+      }
+  }, []);
+
+  console.log({favorites})
+
+  const favListItems = [];
+  if (favorites.length) {
+      for (const[i, favorite] of favorites.entries()) {
+          favListItems.push(
+              <li>{favorite}</li>
+          );
+      }
+  } else {
+      favListItems.push(
+          <li>no favorites added</li>
+      );
+  }
 
   return (
     <main className="container-fluid bg-info text-left">
@@ -21,19 +87,14 @@ export function Matches() {
                 {/*</form>*/}
                 <h1>Matches with {partner}</h1>
                 <ul>
-                    <li>Sally</li>
-                    <li>June</li>
-                    <li>Ellie</li>
-                    <li>Rachel</li>
+                    {listItems}
                 </ul>
     
                 <br />
     
                 <h1>Favorites</h1>
                 <ul>
-                    <li>Celeste</li>
-                    <li>Megan</li>
-                    <li>Chloe</li>
+                    {favListItems}
                 </ul>
             </main>
   );

@@ -26,4 +26,7 @@ There were several helpful things that I learned from this deliverable. First, t
 
 ## CSS Notes
 
+## React Notes
+
+I learned a lot from this deliverable. I learned how to pass variables to different parts of my program and how to run everything dynamically.
 

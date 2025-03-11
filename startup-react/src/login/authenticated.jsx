@@ -8,9 +8,19 @@ import './authenticated.css';
 export function Authenticated(props) {
   const navigate = useNavigate();
 
+  function unconnect() {
+      localStorage.removeItem('partner')
+      props.onUnconnect();
+  }
   function logout() {
     localStorage.removeItem('userName');
+    localStorage.removeItem('Favorites');
     props.onLogout();
+  }
+
+  function logoff() {
+      logout();
+      unconnect();
   }
 
   return (
@@ -19,7 +29,7 @@ export function Authenticated(props) {
       <Button variant='primary' onClick={() => navigate('/play')}>
         Play
       </Button>
-      <Button variant='info' onClick={() => logout()}>
+      <Button variant='info' onClick={() => logoff()}>
         Logout
       </Button>
     </div>

@@ -16,6 +16,7 @@ span.partner{
 .container {
   height: 50vh; /* 50% of the viewport height */
   width: 500px;
+  padding: 0;
 }
 
 fieldset {
@@ -29,6 +30,8 @@ fieldset {
 .container h1 {
     line-height: 30vh;
     font-size: 100px;
+    align-content: space-evenly;
+    padding: 0;
 }
 
 #like {
