@@ -8,19 +8,17 @@ import './authenticated.css';
 export function Authenticated(props) {
   const navigate = useNavigate();
 
-  function unconnect() {
-      localStorage.removeItem('partner')
-      props.onUnconnect();
-  }
   function logout() {
-    localStorage.removeItem('userName');
-    localStorage.removeItem('Favorites');
-    props.onLogout();
-  }
-
-  function logoff() {
-      logout();
-      unconnect();
+      fetch(`/api/auth/logout`, {
+          method: 'delete',
+      })
+          .catch(() => {
+              // Logout failed. Assuming offline
+          })
+          .finally(() => {
+              localStorage.removeItem('userName');
+              props.onLogout();
+          });
   }
 
   return (
@@ -29,7 +27,7 @@ export function Authenticated(props) {
       <Button variant='primary' onClick={() => navigate('/play')}>
         Play
       </Button>
-      <Button variant='info' onClick={() => logoff()}>
+      <Button variant='info' onClick={() => logout()}>
         Logout
       </Button>
     </div>

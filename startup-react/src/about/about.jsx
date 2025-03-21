@@ -5,7 +5,7 @@ export function About() {
   return (
     <main className="container-fluid bg-info text-center">
         <div className="flex">
-            <img className="align-center" src="../../public/cute-baby.jpg" alt="a baby" width="50%"/>
+            <img className="align-center" src="/cute-baby.jpg" alt="a baby" width="50%"/>
         </div>
         <h1>About Baby Namer</h1>
         <p>
