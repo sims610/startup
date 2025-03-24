@@ -6,61 +6,100 @@ import { Connected } from './connected';
 import { ConState } from './conState';
 
 export function Play({userName, conState, onConChange, partner}) {
-    let girls = ["Sally", "Chloe", "Madison", "Kate", "Skylar", "Terry", "Addison", "Addie", "Susan", "Sandra"];
-    let boys = ["Cole", "Aaron", "Nathan", "Michael", "Corbin", "Ben", "Tim", "Luke", "Reggie"]
     let gcolor = '#ffbbbb'
     let bcolor = '#8199ff'
 
-    const [names, setGender] = React.useState(girls)
-    const [count, setCount] = React.useState(0);
-    const [colorme, setColor] = React.useState(gcolor)
+
+    const [gender, setGender] = React.useState('Select Gender')
+    const [colorme, setColor] = React.useState('#000000')
+    const [name, setName] = React.useState('Boy or Girl')
+    const isFirstRender = React.useRef(true);
+
+    React.useEffect(()=>{
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
+        fetch(`https://api.apiverve.com/v1/babynamegenerator?gender=${gender}&count=1`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': '7b813585-da9d-4a61-b41e-10779beb263e'
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                console.log(data.data.names);
+                console.log(data.data.names[0].firstName);
+                setName(data.data.names[0].firstName);
+            })
+            .catch();
+    }, [gender])
+
+    function getName() {
+        fetch(`https://api.apiverve.com/v1/babynamegenerator?gender=${gender}&count=1`, {
+            method: 'GET',
+            headers: {
+                'x-api-key': '7b813585-da9d-4a61-b41e-10779beb263e'
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                console.log(data.data.names);
+                console.log(data.data.names[0].firstName);
+                setName(data.data.names[0].firstName);
+            })
+            .catch();
+    }
 
     function rejectClick() {
         console.log('reject')
-        setCount(count+1)
+        getName();
     }
 
     function acceptClick() {
-        let name = localStorage.getItem('userName')
+        let userName = localStorage.getItem('userName')
         let liked = []
-        const likedText = localStorage.getItem(name)
+        const likedText = localStorage.getItem(userName)
         if (likedText) {
             liked = JSON.parse(likedText)
         }
-        liked.push(names[count])
-        localStorage.setItem(name, JSON.stringify(liked))
-        setCount(count + 1)
+        liked.push(name)
+        localStorage.setItem(userName, JSON.stringify(liked))
+        getName();
     }
 
     function favoriteClick() {
-        let name = localStorage.getItem('userName')
+        let userName = localStorage.getItem('userName')
         let liked = []
         let favorite = []
-        const likedText = localStorage.getItem(name)
+        const likedText = localStorage.getItem(userName)
         const favoriteText = localStorage.getItem('Favorites')
         if (likedText) {
             liked = JSON.parse(likedText)
         }
-        liked.push(names[count])
+        liked.push(name)
         if (favoriteText) {
             favorite = JSON.parse(favoriteText)
         }
-        favorite.push(names[count])
+        favorite.push(name)
         localStorage.setItem('Favorites',JSON.stringify(favorite))
-        localStorage.setItem(name, JSON.stringify(liked))
-        setCount(count+1)
+        localStorage.setItem(userName, JSON.stringify(liked))
+        getName();
     }
 
-    function boyClick() {
-        console.log('boy')
-        setGender(boys)
-        setColor(bcolor)
+    async function boyClick() {
+        setGender('male');
+        console.log({gender})
+        setColor(bcolor);
     }
 
     function girlClick() {
         console.log('girl')
-        setGender(girls)
-        setColor(gcolor)
+        setGender('female')
+        setColor(gcolor);
     }
 
 
@@ -97,7 +136,7 @@ export function Play({userName, conState, onConChange, partner}) {
         <div>
             <div className="container pt-3 border border-dark bg-light float-center">
                 <a id="heart" href="#" onClick={favoriteClick}></a>
-                <h1 style={{color: colorme, alignItems: "center"}}>{names[count]}</h1>
+                <h1 style={{color: colorme, alignItems: "center"}}>{name}</h1>
             </div>
             <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>accept</button>
             <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>reject</button>
