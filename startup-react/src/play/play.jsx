@@ -21,7 +21,7 @@ export function Play({userName, conState, onConChange, partner}) {
             return;
         }
 
-        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat&seed=1`, {
+        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat`, {
             method: 'GET'
         })
             .then((response) => response.json())
@@ -32,7 +32,7 @@ export function Play({userName, conState, onConChange, partner}) {
     }, [gender])
 
     function getName() {
-        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat&seed=1`, {
+        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat`, {
             method: 'GET'
         })
             .then((response) => response.json())
