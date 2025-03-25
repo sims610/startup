@@ -21,35 +21,23 @@ export function Play({userName, conState, onConChange, partner}) {
             return;
         }
 
-        fetch(`https://api.apiverve.com/v1/babynamegenerator?gender=${gender}&count=1`, {
-            method: 'GET',
-            headers: {
-                'x-api-key': '...'
-            }
+        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat`, {
+            method: 'GET'
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-                console.log(data.data.names);
-                console.log(data.data.names[0].firstName);
-                setName(data.data.names[0].firstName);
+                setName(data.results[0].name.first);
             })
             .catch();
     }, [gender])
 
     function getName() {
-        fetch(`https://api.apiverve.com/v1/babynamegenerator?gender=${gender}&count=1`, {
-            method: 'GET',
-            headers: {
-                'x-api-key': '7b813585-da9d-4a61-b41e-10779beb263e'
-            }
+        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat`, {
+            method: 'GET'
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log(data);
-                console.log(data.data.names);
-                console.log(data.data.names[0].firstName);
-                setName(data.data.names[0].firstName);
+                setName(data.results[0].name.first);
             })
             .catch();
     }
