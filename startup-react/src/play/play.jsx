@@ -21,7 +21,7 @@ export function Play({userName, conState, onConChange, partner}) {
             return;
         }
 
-        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat`, {
+        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat&seed=1`, {
             method: 'GET'
         })
             .then((response) => response.json())
@@ -32,7 +32,7 @@ export function Play({userName, conState, onConChange, partner}) {
     }, [gender])
 
     function getName() {
-        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat`, {
+        fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat&seed=1`, {
             method: 'GET'
         })
             .then((response) => response.json())
@@ -48,33 +48,35 @@ export function Play({userName, conState, onConChange, partner}) {
         getName();
     }
 
-    function acceptClick() {
+    async function acceptClick() {
         let userName = localStorage.getItem('userName')
-        let liked = []
-        const likedText = localStorage.getItem(userName)
-        if (likedText) {
-            liked = JSON.parse(likedText)
-        }
-        liked.push(name)
-        localStorage.setItem(userName, JSON.stringify(liked))
+        const newLike = {userName: userName, like: name}
+        await fetch('/api/like', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newLike)
+        })
+        console.log(newLike)
         getName();
     }
 
     async function favoriteClick() {
         let userName = localStorage.getItem('userName')
-        let liked = []
-        const likedText = localStorage.getItem(userName)
+        const newLike = {userName: userName, like: name}
         const newFavorite = {favorite: name}
-        if (likedText) {
-            liked = JSON.parse(likedText)
-        }
+
+        await fetch('/api/like', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newLike)
+        })
+
         await fetch('/api/favorite', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newFavorite),
         })
-        liked.push(name)
-        localStorage.setItem(userName, JSON.stringify(liked))
+        console.log(newLike);
         console.log(newFavorite);
         getName();
     }

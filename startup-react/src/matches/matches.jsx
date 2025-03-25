@@ -4,50 +4,13 @@ import './matches.css';
 export function Matches() {
 
   const partner = localStorage.getItem('partner') || 'Spouse';
-  const [liked, setLiked] = React.useState([]);
+  const [likes, setLikes] = React.useState([]);
   const [partnersLiked, setPartnersLiked] = React.useState([]);
   const [favorites, setFavorites] = React.useState([]);
-  let name = localStorage.getItem('userName')
-
-  React.useEffect(() => {
-      const likedText = localStorage.getItem(name);
-      if (likedText) {
-          setLiked(JSON.parse(likedText));
-      }
-  }, []);
-
-  React.useEffect(() => {
-      const partnersLikedText = localStorage.getItem(partner);
-      if (partnersLikedText) {
-          setPartnersLiked(JSON.parse(partnersLikedText));
-      }
-  }, []);
-
-  console.log({partnersLiked})
-  console.log({liked})
-
-  const matches = []
-  for (let i = 0; i < liked.length; i++) {
-      if (partnersLiked.includes(liked[i])) {
-          matches.push(liked[i])
-      }
-  }
-
-  console.log({matches})
-
-
-  const listItems = [];
-  if (matches.length) {
-      for (const [i, match] of matches.entries()) {
-          listItems.push(
-              <li>{match}</li>
-          );
-      }
-  } else {
-      listItems.push(
-          <li aria-colspan='2'>no matches</li>
-      );
-  }
+  const [myLikes, setMyLikes] = React.useState([]);
+  let name = localStorage.getItem('userName');
+  let likedText = [];
+  let partnersLikedText = [];
 
   // set favorites dynamically
   React.useEffect(() => {
@@ -58,18 +21,75 @@ export function Matches() {
           });
   }, []);
 
-  console.log({favorites})
+  React.useEffect(() => {
+      fetch('/api/likes')
+          .then((response) => response.json())
+          .then((likes) => {
+              setLikes(likes);
+          });
+  }, []);
+
+  console.log({favorites});
+  console.log({likes})
+
+  for (const [i, like] of likes.entries()) {
+      console.log(like.like)
+      console.log(like.userName)
+  }
+
+
+  console.log({likes})
+  for (const [i, like] of likes.entries()) {
+      console.log(like.userName)
+      console.log(name)
+      if (like.userName === name) {
+          console.log('matches')
+          likedText.push(like.like)
+      }
+  }
+  console.log(likedText);
+
+  for (const [i, like] of likes.entries()) {
+      if (like.userName === partner) {
+          console.log('partner matches')
+          partnersLikedText.push(like.like)
+      }
+  }
+
+  const matches = []
+  for (let i = 0; i < likedText.length; i++) {
+      if (partnersLikedText.includes(likedText[i])) {
+          matches.push(likedText[i])
+      }
+  }
+
+  console.log({matches})
+
+
+  const listItems = [];
+  if (matches.length) {
+      for (const [i, match] of matches.entries()) {
+          listItems.push(
+              <li key={i}>{match}</li>
+          );
+      }
+  } else {
+      listItems.push(
+          <li key='0'>no matches</li>
+      );
+  }
+
 
   const favListItems = [];
   if (favorites.length) {
       for (const[i, favorite] of favorites.entries()) {
           favListItems.push(
-              <li>{favorite.favorite}</li>
+              <li key={i}>{favorite.favorite}</li>
           );
       }
   } else {
       favListItems.push(
-          <li>no favorites added</li>
+          <li key='0'>no favorites added</li>
       );
   }
 
