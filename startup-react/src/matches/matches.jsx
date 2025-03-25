@@ -51,10 +51,11 @@ export function Matches() {
 
   // set favorites dynamically
   React.useEffect(() => {
-      const favoriteText = localStorage.getItem('Favorites');
-      if (favoriteText) {
-          setFavorites(JSON.parse(favoriteText));
-      }
+      fetch('/api/favorites')
+          .then((response) => response.json())
+          .then((favorites) => {
+              setFavorites(favorites);
+          });
   }, []);
 
   console.log({favorites})
@@ -63,7 +64,7 @@ export function Matches() {
   if (favorites.length) {
       for (const[i, favorite] of favorites.entries()) {
           favListItems.push(
-              <li>{favorite}</li>
+              <li>{favorite.favorite}</li>
           );
       }
   } else {

@@ -42,6 +42,7 @@ export function Play({userName, conState, onConChange, partner}) {
             .catch();
     }
 
+
     function rejectClick() {
         console.log('reject')
         getName();
@@ -59,22 +60,22 @@ export function Play({userName, conState, onConChange, partner}) {
         getName();
     }
 
-    function favoriteClick() {
+    async function favoriteClick() {
         let userName = localStorage.getItem('userName')
         let liked = []
-        let favorite = []
         const likedText = localStorage.getItem(userName)
-        const favoriteText = localStorage.getItem('Favorites')
+        const newFavorite = {favorite: name}
         if (likedText) {
             liked = JSON.parse(likedText)
         }
+        await fetch('/api/favorite', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(newFavorite),
+        })
         liked.push(name)
-        if (favoriteText) {
-            favorite = JSON.parse(favoriteText)
-        }
-        favorite.push(name)
-        localStorage.setItem('Favorites',JSON.stringify(favorite))
         localStorage.setItem(userName, JSON.stringify(liked))
+        console.log(newFavorite);
         getName();
     }
 

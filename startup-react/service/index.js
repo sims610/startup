@@ -9,6 +9,8 @@ const authCookieName = 'token';
 // The scores and users are saved in memory and disappear whenever the service is restarted.
 let users = [];
 let scores = [];
+let likes = [];
+let favorites = [];
 
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
@@ -71,14 +73,14 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // GetScores
-apiRouter.get('/scores', verifyAuth, (_req, res) => {
-    res.send(scores);
+apiRouter.get('/favorites', verifyAuth, (_req, res) => {
+    res.send(favorites);
 });
 
 // SubmitScore
-apiRouter.post('/score', verifyAuth, (req, res) => {
-    scores = updateScores(req.body);
-    res.send(scores);
+apiRouter.post('/favorite', verifyAuth, (req, res) => {
+    favorites = updateFavorites(req.body);
+    res.send(favorites);
 });
 
 // Default error handler
@@ -111,6 +113,11 @@ function updateScores(newScore) {
     }
 
     return scores;
+}
+
+function updateFavorites(newFavorite) {
+    favorites.push(newFavorite);
+    return favorites;
 }
 
 async function createUser(email, password) {
