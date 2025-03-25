@@ -24,7 +24,7 @@ export function Play({userName, conState, onConChange, partner}) {
         fetch(`https://api.apiverve.com/v1/babynamegenerator?gender=${gender}&count=1`, {
             method: 'GET',
             headers: {
-                'x-api-key': '7b813585-da9d-4a61-b41e-10779beb263e'
+                'x-api-key': '...'
             }
         })
             .then((response) => response.json())
