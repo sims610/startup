@@ -11,13 +11,13 @@ export function Matches() {
   let name = localStorage.getItem('userName');
   let likedText = [];
   let partnersLikedText = [];
+  let favoritesText = [];
 
   // set favorites dynamically
   React.useEffect(() => {
       fetch('/api/favorites')
           .then(async (response) => await response.json())
           .then((favorites) => {
-              console.log(favorites);
               setFavorites(favorites);
           });
   }, []);
@@ -30,29 +30,15 @@ export function Matches() {
           });
   }, []);
 
-  // console.log({favorites});
-  // console.log({likes})
 
   for (const [i, like] of likes.entries()) {
-      console.log(like.like)
-      console.log(like.userName)
-  }
-
-
-  console.log({likes})
-  for (const [i, like] of likes.entries()) {
-      console.log(like.userName)
-      console.log(name)
       if (like.userName === name) {
-          console.log('matches')
           likedText.push(like.like)
       }
   }
-  console.log(likedText);
 
   for (const [i, like] of likes.entries()) {
       if (like.userName === partner) {
-          console.log('partner matches')
           partnersLikedText.push(like.like)
       }
   }
@@ -64,7 +50,11 @@ export function Matches() {
       }
   }
 
-  console.log({matches})
+  for (const [i, favorite] of favorites.entries()) {
+      if (favorite.userName === name) {
+          favoritesText.push(favorite.favorite)
+      }
+  }
 
 
   const listItems = [];
@@ -82,10 +72,10 @@ export function Matches() {
 
 
   const favListItems = [];
-  if (favorites.length) {
-      for (const[i, favorite] of favorites.entries()) {
+  if (favoritesText.length) {
+      for (const[i, favorite] of favoritesText.entries()) {
           favListItems.push(
-              <li key={i}>{favorite.favorite}</li>
+              <li key={i}>{favorite}</li>
           );
       }
   } else {
