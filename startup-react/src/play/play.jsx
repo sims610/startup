@@ -76,8 +76,8 @@ export function Play({userName, conState, onConChange, partner}) {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newFavorite),
         })
-        console.log(newLike);
-        console.log(newFavorite);
+        // console.log(newLike);
+        // console.log(newFavorite);
         getName();
     }
 

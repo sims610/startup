@@ -43,14 +43,14 @@ async function addFavorite(favorite) {
     return favoriteCollection.insertOne(favorite);
 }
 
-async function getFavorites(user) {
-    const query = { favorite: { userName: user} };
-    const cursor = favoriteCollection.find(query);
+async function getFavorites() {
+    const cursor = favoriteCollection.find({});
     return cursor.toArray();
 }
 
 async function getLikes(){
-    return likeCollection.find();
+    const cursor = likeCollection.find({});
+    return cursor.toArray();
 }
 
 module.exports = {

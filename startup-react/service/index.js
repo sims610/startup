@@ -77,8 +77,7 @@ const verifyAuth = async (req, res, next) => {
 
 // GetScores
 apiRouter.get('/favorites', verifyAuth, async (_req, res) => {
-    const user = localStorage.getItem(userName);
-    const favorites = await DB.getFavorites(user);
+    const favorites = await DB.getFavorites();
     res.send(favorites);
 });
 

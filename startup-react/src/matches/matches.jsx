@@ -15,8 +15,9 @@ export function Matches() {
   // set favorites dynamically
   React.useEffect(() => {
       fetch('/api/favorites')
-          .then((response) => response.json())
+          .then(async (response) => await response.json())
           .then((favorites) => {
+              console.log(favorites);
               setFavorites(favorites);
           });
   }, []);
@@ -29,8 +30,8 @@ export function Matches() {
           });
   }, []);
 
-  console.log({favorites});
-  console.log({likes})
+  // console.log({favorites});
+  // console.log({likes})
 
   for (const [i, like] of likes.entries()) {
       console.log(like.like)
