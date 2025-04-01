@@ -49,6 +49,10 @@ async function getFavorites(user) {
     return cursor.toArray();
 }
 
+async function getLikes(){
+    return likeCollection.find();
+}
+
 module.exports = {
     getUser,
     getUserByToken,
@@ -56,6 +60,6 @@ module.exports = {
     updateUser,
     addLike,
     addFavorite,
-    addScore,
     getFavorites,
+    getLikes,
 };

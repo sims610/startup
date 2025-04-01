@@ -76,7 +76,7 @@ const verifyAuth = async (req, res, next) => {
 };
 
 // GetScores
-apiRouter.get('/favorites', verifyAuth, (_req, res) => {
+apiRouter.get('/favorites', verifyAuth, async (_req, res) => {
     const user = localStorage.getItem(userName);
     const favorites = await DB.getFavorites(user);
     res.send(favorites);
@@ -88,7 +88,8 @@ apiRouter.post('/favorite', verifyAuth, (req, res) => {
     res.send(favorites);
 });
 
-apiRouter.get('/likes', verifyAuth, (_req, res) => {
+apiRouter.get('/likes', verifyAuth, async (_req, res) => {
+    const likes = await DB.getLikes();
     res.send(likes);
 });
 
@@ -113,9 +114,9 @@ async function updateFavorites(newFavorite) {
     return DB.getFavorites();
 }
 
-function updateLikes(newLike) {
-    likes.push(newLike);
-    return likes;
+async function updateLikes(newLike) {
+    await DB.addLike(newLike);
+    return DB.getLikes();
 }
 
 async function createUser(email, password) {
