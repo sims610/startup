@@ -63,7 +63,7 @@ export function Play({userName, conState, onConChange, partner}) {
     async function favoriteClick() {
         let userName = localStorage.getItem('userName')
         const newLike = {userName: userName, like: name}
-        const newFavorite = {favorite: name}
+        const newFavorite = {userName: userName, favorite: name}
 
         await fetch('/api/like', {
             method: 'POST',

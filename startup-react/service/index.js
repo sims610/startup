@@ -77,12 +77,14 @@ const verifyAuth = async (req, res, next) => {
 
 // GetScores
 apiRouter.get('/favorites', verifyAuth, (_req, res) => {
+    const user = localStorage.getItem(userName);
+    const favorites = await DB.getFavorites(user);
     res.send(favorites);
 });
 
 // SubmitScore
 apiRouter.post('/favorite', verifyAuth, (req, res) => {
-    favorites = updateFavorites(req.body);
+    const favorites = updateFavorites(req.body)
     res.send(favorites);
 });
 
@@ -92,7 +94,7 @@ apiRouter.get('/likes', verifyAuth, (_req, res) => {
 
 // SubmitScore
 apiRouter.post('/like', verifyAuth, (req, res) => {
-    likes = updateLikes(req.body);
+    const likes = updateLikes(req.body);
     res.send(likes);
 });
 
@@ -106,9 +108,9 @@ app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
-function updateFavorites(newFavorite) {
-    favorites.push(newFavorite);
-    return favorites;
+async function updateFavorites(newFavorite) {
+    await DB.addFavorite(newFavorite);
+    return DB.getFavorites();
 }
 
 function updateLikes(newLike) {

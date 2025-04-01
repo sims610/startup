@@ -3,8 +3,10 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/simon-css" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/simon-db" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/simon-html" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/simon-react" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/simon-service" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/simon-websocket" vcs="Git" />
   </component>
 </project>

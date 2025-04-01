@@ -5,6 +5,8 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('startup');
 const userCollection = db.collection('user');
+const favoriteCollection = db.collection('favorite');
+const likeCollection = db.collection('like');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -33,17 +35,17 @@ async function updateUser(user) {
     await userCollection.updateOne({ email: user.email }, { $set: user });
 }
 
-async function addScore(score) {
-    return scoreCollection.insertOne(score);
+async function addLike(like) {
+    return likeCollection.insertOne(like);
 }
 
-function getHighScores() {
-    const query = { score: { $gt: 0, $lt: 900 } };
-    const options = {
-        sort: { score: -1 },
-        limit: 10,
-    };
-    const cursor = scoreCollection.find(query, options);
+async function addFavorite(favorite) {
+    return favoriteCollection.insertOne(favorite);
+}
+
+async function getFavorites(user) {
+    const query = { favorite: { userName: user} };
+    const cursor = favoriteCollection.find(query);
     return cursor.toArray();
 }
 
@@ -52,6 +54,8 @@ module.exports = {
     getUserByToken,
     addUser,
     updateUser,
+    addLike,
+    addFavorite,
     addScore,
-    getHighScores,
+    getFavorites,
 };
