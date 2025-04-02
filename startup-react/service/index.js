@@ -7,12 +7,6 @@ const DB = require('./database.js');
 
 const authCookieName = 'token';
 
-// The scores and users are saved in memory and disappear whenever the service is restarted.
-let users = [];
-let scores = [];
-let likes = [];
-let favorites = [];
-
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
 // JSON body parsing using built-in middleware

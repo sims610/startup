@@ -5,9 +5,7 @@ export function Matches() {
 
   const partner = localStorage.getItem('partner') || 'Spouse';
   const [likes, setLikes] = React.useState([]);
-  const [partnersLiked, setPartnersLiked] = React.useState([]);
   const [favorites, setFavorites] = React.useState([]);
-  const [myLikes, setMyLikes] = React.useState([]);
   let name = localStorage.getItem('userName');
   let likedText = [];
   let partnersLikedText = [];
@@ -35,9 +33,6 @@ export function Matches() {
       if (like.userName === name) {
           likedText.push(like.like)
       }
-  }
-
-  for (const [i, like] of likes.entries()) {
       if (like.userName === partner) {
           partnersLikedText.push(like.like)
       }
