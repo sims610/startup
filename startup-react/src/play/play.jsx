@@ -83,6 +83,8 @@ export function Play({userName, conState, onConChange, partner}) {
 
         GameNotifier.broadcastEvent(userName, GameEvent.Favorite, name)
         getName();
+
+        return '';
     }
 
     async function boyClick() {
@@ -96,6 +98,27 @@ export function Play({userName, conState, onConChange, partner}) {
         setGender('female')
         setColor(gcolor);
     }
+
+    //get all the radio buttons
+    var radios = document.querySelectorAll('input[type=radio]');
+    //get only the checked radio button
+    var checked = document.querySelectorAll('input[type=radio]:checked');
+    //get the submit button
+    var btn = document.querySelector('[type=button]');
+    //disable the button on page load by checking the length
+    if(!checked.length){
+        btn.setAttribute("disabled", "disabled");
+    }
+    //attach the event handler to all the radio buttons with forEach and addEventListener
+    radios.forEach(function(el){
+        el.addEventListener('click', function(){
+            checked = document.querySelectorAll('input[type=radio]:checked');
+            if(checked.length){
+                //enable the button by removing the attribute
+                btn.removeAttribute("disabled");
+            }
+        });
+    });
 
     const [events, setEvent] = React.useState([]);
 
@@ -135,7 +158,7 @@ export function Play({userName, conState, onConChange, partner}) {
 
 
     return (
-        <main className="container-fluid bg-info text-center text-dark">
+        <main className="container-fluid text-center text-dark">
             <div className="users">
                 <h3 className="user-name text-left">Playing as {userName}</h3>
             </div>
@@ -157,10 +180,14 @@ export function Play({userName, conState, onConChange, partner}) {
                 <br/>
                 <fieldset className="form-group border">
                     <legend className="w-auto">Gender</legend>
-                    <label className="form-check-label" for="radio1">Boy</label>
+                    <label className="form-check-label" for="radio1">
+                        Boy
+                    </label>
                     <input className="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1"
                            onClick={boyClick}/>
-                    <label className="form-check-label" for="radio2">Girl</label>
+                    <label className="form-check-label" for="radio2">
+                        Girl
+                    </label>
                     <input className="form-check-input" type="radio" id="radio2" name="varRadio" value="radio2"
                            onClick={girlClick}/>
                 </fieldset>
@@ -171,9 +198,11 @@ export function Play({userName, conState, onConChange, partner}) {
                     <a id="heart" href="#" onClick={favoriteClick}></a>
                     <h1 style={{color: colorme, alignItems: "center"}}>{name}</h1>
                 </div>
-                <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>accept
+                <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>
+                    Accept
                 </button>
-                <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>reject
+                <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>
+                    Reject
                 </button>
             </div>
             <br/>

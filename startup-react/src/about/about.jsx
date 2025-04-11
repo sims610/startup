@@ -3,7 +3,7 @@ import './about.css';
 
 export function About() {
   return (
-    <main className="container-fluid bg-info text-center">
+    <main className="container-fluid text-center">
         <div className="flex">
             <img className="align-center" src="/cute-baby.jpg" alt="a baby" width="50%"/>
         </div>

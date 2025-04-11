@@ -80,7 +80,7 @@ export function Matches() {
   }
 
   return (
-    <main className="container-fluid bg-info text-left">
+    <main className="container-fluid text-left">
                 {/*<form>*/}
                 {/*    <fieldset className="form-group border">*/}
                 {/*        <legend className="w-auto">Connections</legend>*/}
