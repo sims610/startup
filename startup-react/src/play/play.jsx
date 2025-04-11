@@ -4,6 +4,7 @@ import './play.css';
 import { Unconnected } from './unconnected';
 import { Connected } from './connected';
 import { ConState } from './conState';
+import { GameEvent, GameNotifier } from './gameNotifier';
 
 export function Play({userName, conState, onConChange, partner}) {
     let gcolor = '#ffbbbb'
@@ -57,6 +58,7 @@ export function Play({userName, conState, onConChange, partner}) {
             body: JSON.stringify(newLike)
         })
         console.log(newLike)
+        GameNotifier.broadcastEvent(userName, GameEvent.Like, name);
         getName();
     }
 
@@ -78,6 +80,8 @@ export function Play({userName, conState, onConChange, partner}) {
         })
         // console.log(newLike);
         // console.log(newFavorite);
+
+        GameNotifier.broadcastEvent(userName, GameEvent.Favorite, name)
         getName();
     }
 
@@ -93,46 +97,91 @@ export function Play({userName, conState, onConChange, partner}) {
         setColor(gcolor);
     }
 
+    const [events, setEvent] = React.useState([]);
+
+    React.useEffect(() => {
+        GameNotifier.addHandler(handleGameEvent);
+
+        return () => {
+            GameNotifier.removeHandler(handleGameEvent);
+        };
+    });
+
+    function handleGameEvent(event) {
+        setEvent([...events, event]);
+    }
+
+    function createMessageArray() {
+        const messageArray = [];
+        for (const [i, event] of events.entries()) {
+            let message = 'unknown';
+            if (event.type === GameEvent.Like) {
+                message = ` liked ${event.value}`;
+            } else if (event.type === GameEvent.Favorite) {
+                message = ` loves ${event.value}`;
+            } else if (event.type === GameEvent.System) {
+                message = event.value.msg;
+            }
+
+            messageArray.push(
+                <div key={i} className='event'>
+                    <span className={'player-event'}>{event.from.split('@')[0]}</span>
+                    {message}
+                </div>
+            );
+        }
+        return messageArray;
+    }
+
 
     return (
-    <main className="container-fluid bg-info text-center text-dark">
-        <div className="users">
-            <h3 className="user-name text-left">Playing as {userName}</h3>
-        </div>
-        <br />
-        <form>
-            <div>
-                {conState === ConState.Connected && (
-                    <Connected partner={partner} onUnconnect={() => onConChange(partner, ConState.Unconnected)}/>
-                )}
-                {conState === ConState.Unconnected && (
-                    <Unconnected
-                        partner={partner}
-                        onConnect={(connectPartner) => {
-                            onConChange(connectPartner, ConState.Connected);
-                        }}
-                    />
-                )}
+        <main className="container-fluid bg-info text-center text-dark">
+            <div className="users">
+                <h3 className="user-name text-left">Playing as {userName}</h3>
             </div>
             <br/>
+            <form>
+                <div>
+                    {conState === ConState.Connected && (
+                        <Connected partner={partner} onUnconnect={() => onConChange(partner, ConState.Unconnected)}/>
+                    )}
+                    {conState === ConState.Unconnected && (
+                        <Unconnected
+                            partner={partner}
+                            onConnect={(connectPartner) => {
+                                onConChange(connectPartner, ConState.Connected);
+                            }}
+                        />
+                    )}
+                </div>
+                <br/>
                 <fieldset className="form-group border">
                     <legend className="w-auto">Gender</legend>
                     <label className="form-check-label" for="radio1">Boy</label>
-                    <input className="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1" onClick={boyClick}/>
+                    <input className="form-check-input" type="radio" id="radio1" name="varRadio" value="radio1"
+                           onClick={boyClick}/>
                     <label className="form-check-label" for="radio2">Girl</label>
-                    <input className="form-check-input" type="radio" id="radio2" name="varRadio" value="radio2" onClick={girlClick} />
+                    <input className="form-check-input" type="radio" id="radio2" name="varRadio" value="radio2"
+                           onClick={girlClick}/>
                 </fieldset>
-        </form>
-        <p></p>
-        <div>
-            <div className="container pt-3 border border-dark bg-light float-center">
-                <a id="heart" href="#" onClick={favoriteClick}></a>
-                <h1 style={{color: colorme, alignItems: "center"}}>{name}</h1>
+            </form>
+            <p></p>
+            <div>
+                <div className="container pt-3 border border-dark bg-light float-center">
+                    <a id="heart" href="#" onClick={favoriteClick}></a>
+                    <h1 style={{color: colorme, alignItems: "center"}}>{name}</h1>
+                </div>
+                <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>accept
+                </button>
+                <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>reject
+                </button>
             </div>
-            <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>accept</button>
-            <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>reject</button>
-        </div>
-        <br/>
-    </main>
-  );
+            <br/>
+            <div className='players'>
+                Player
+                <span className='player-name'> {userName}</span>
+                <div id='player-messages'>{createMessageArray()}</div>
+            </div>
+        </main>
+    );
 }
