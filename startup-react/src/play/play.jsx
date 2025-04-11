@@ -194,7 +194,7 @@ export function Play({userName, conState, onConChange, partner}) {
             </form>
             <p></p>
             <div>
-                <div className="container pt-3 border border-dark bg-light float-center">
+                <div className="container-fluid pt-3 border border-dark bg-light float-center" id="card">
                     <a id="heart" href="#" onClick={favoriteClick}></a>
                     <h1 style={{color: colorme, alignItems: "center"}}>{name}</h1>
                 </div>

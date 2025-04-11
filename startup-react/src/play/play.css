@@ -17,9 +17,9 @@ span.partner{
 }
 
 
-.container {
+#card {
   height: 50vh; /* 50% of the viewport height */
-  width: 500px;
+  width: 30vw;
   padding: 0;
 }
 
@@ -32,9 +32,10 @@ fieldset {
 }
 
 .container h1 {
-    line-height: 30vh;
+    line-height: 50vh;
     font-size: 100px;
     align-content: space-evenly;
+    vertical-align: center;
     padding: 0;
 }
 
@@ -63,7 +64,7 @@ fieldset {
   top: 0;
   transform: rotate(-45deg);
   position: relative;
-  left: 45%; top: 3%;
+  left: 42%; top: 3%;
   width: 25px;
 }
 
