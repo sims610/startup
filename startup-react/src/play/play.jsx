@@ -136,6 +136,13 @@ export function Play({userName, conState, onConChange, partner}) {
         return messageArray;
     }
 
+    function btnDisabled() {
+        if (colorme === '#000000') {
+            return true;
+        }
+        return false;
+    }
+
 
     return (
         <main className="container-fluid text-center text-dark">
@@ -175,13 +182,13 @@ export function Play({userName, conState, onConChange, partner}) {
             <p></p>
             <div>
                 <div className="container-fluid pt-3 border border-dark bg-light float-center" id="card">
-                    <a id="heart" href="#" onClick={favoriteClick}></a>
-                    <h1 style={{color: colorme, alignItems: "center"}}>{name}</h1>
+                    <button id="heart" disabled={btnDisabled()} onClick={favoriteClick}></button>
+                    <h1 style={{color: colorme, verticalAlign: "center", position: "relative"}}>{name}</h1>
                 </div>
-                <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick}>
+                <button id="like" type="button" className="btn btn-primary float-right" onClick={acceptClick} disabled={btnDisabled()}>
                     Accept
                 </button>
-                <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick}>
+                <button id="reject" type="button" className="btn btn-primary float-left" onClick={rejectClick} disabled={btnDisabled()}>
                     Reject
                 </button>
             </div>

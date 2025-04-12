@@ -21,6 +21,8 @@ span.partner{
   height: 80vw; /* 50% of the viewport height */
   width: 80vw;
   padding: 0;
+  max-width: min(80vmin, 1000px);
+  max-height: min(80vmin, 1000px);
 }
 
 fieldset {
@@ -64,8 +66,9 @@ fieldset {
   top: 0;
   transform: rotate(-45deg);
   position: relative;
-  left: 42%; top: 3%;
+  right: -40%; top: 3%;
   width: 25px;
+  border: none;
 }
 
 #heart::before,
@@ -89,7 +92,7 @@ fieldset {
 }
 
 #heart:active {
-  animation: changeColor 1s;
+  animation: changeColor 3s;
 }
 
 @keyframes changeColor {
