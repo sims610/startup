@@ -18,8 +18,8 @@ span.partner{
 
 
 #card {
-  height: 50vh; /* 50% of the viewport height */
-  width: 30vw;
+  height: 80vw; /* 50% of the viewport height */
+  width: 80vw;
   padding: 0;
 }
 
@@ -88,7 +88,7 @@ fieldset {
   top: 0;
 }
 
-#heart:focus {
+#heart:active {
   animation: changeColor 1s;
 }
 

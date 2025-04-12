@@ -19,6 +19,7 @@ export function Play({userName, conState, onConChange, partner}) {
     React.useEffect(()=>{
         if (isFirstRender.current) {
             isFirstRender.current = false;
+            console.log("Is first render")
             return;
         }
 
@@ -98,27 +99,6 @@ export function Play({userName, conState, onConChange, partner}) {
         setGender('female')
         setColor(gcolor);
     }
-
-    //get all the radio buttons
-    var radios = document.querySelectorAll('input[type=radio]');
-    //get only the checked radio button
-    var checked = document.querySelectorAll('input[type=radio]:checked');
-    //get the submit button
-    var btn = document.querySelector('[type=button]');
-    //disable the button on page load by checking the length
-    if(!checked.length){
-        btn.setAttribute("disabled", "disabled");
-    }
-    //attach the event handler to all the radio buttons with forEach and addEventListener
-    radios.forEach(function(el){
-        el.addEventListener('click', function(){
-            checked = document.querySelectorAll('input[type=radio]:checked');
-            if(checked.length){
-                //enable the button by removing the attribute
-                btn.removeAttribute("disabled");
-            }
-        });
-    });
 
     const [events, setEvent] = React.useState([]);
 
