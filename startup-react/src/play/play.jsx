@@ -31,8 +31,7 @@ export function Play({userName, conState, onConChange, partner}) {
                 setName(data.results[0].name.first);
             })
             .catch();
-    }, [gender])
-
+    }, [gender]);
     function getName() {
         fetch(`https://randomuser.me/api/?gender=${gender}&nat=us&inc=gender,name,nat`, {
             method: 'GET'
